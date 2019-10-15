@@ -11,6 +11,14 @@ public class Player : MonoBehaviour {
 
     [SerializeField] float padding = 1f;
 
+    [SerializeField] GameObject firePrefab;
+
+    [SerializeField] float fireSpeed = 5f;
+
+    [SerializeField] float firePeriod = 0.5f;
+
+    Coroutine firingCoroutine;
+
     float xMin, xMax;
 
     // Use this for initialization
@@ -20,9 +28,65 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        Move();
-        Jump();
+
+        if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+        {
+            Jump();
+        }
+
+        if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        {
+            Move();
+        }
+        
+        Fire();
+        
+       
 	}
+
+    private void Fire()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            firingCoroutine = StartCoroutine(FireContinuously());
+        }
+
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            StopCoroutine(firingCoroutine);
+        }
+    }
+
+
+    // code commented out as bug in game if you fire both from key board and mouse coroutine starts endless firing 
+    /*
+    private void MouseClickFire()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            firingCoroutine = StartCoroutine(FireContinuously());
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            StopCoroutine(firingCoroutine);
+        }
+    }
+    */
+
+    IEnumerator FireContinuously()
+    {
+        while (true)
+        {
+            // Quarernion used for rotation that game object has
+            GameObject fire = Instantiate(firePrefab, new Vector3(transform.position.x + 1, transform.position.y), Quaternion.identity) as GameObject;
+
+            fire.GetComponent<Rigidbody2D>().velocity = new Vector2(fireSpeed, 0);
+
+            yield return new WaitForSeconds(firePeriod);
+        }
+       
+    }
 
     private void SetUpMoveBoundaries()
     {
@@ -33,6 +97,7 @@ public class Player : MonoBehaviour {
 
     private void Move()
     {
+      
         var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
 
         var newXPos = Mathf.Clamp(transform.position.x + deltaX, xMin, xMax);
@@ -43,10 +108,6 @@ public class Player : MonoBehaviour {
 
     private void Jump()
     {
-        if (Input.GetKey("down"))
-        {
-            return;
-        }
         var deltaY = Input.GetAxis("Vertical") * Time.deltaTime * jumpSpeed;
 
         var newYPos = transform.position.y + deltaY;
