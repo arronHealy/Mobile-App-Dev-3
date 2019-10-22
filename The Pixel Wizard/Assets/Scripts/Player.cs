@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
 
     [SerializeField] float moveSpeed = 2f;
 
-    [SerializeField] float jumpSpeed = 10f;
+    [SerializeField] float jumpSpeed = 15f;
 
     [SerializeField] float padding = 1f;
 
