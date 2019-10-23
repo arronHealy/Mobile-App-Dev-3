@@ -12,7 +12,7 @@ public class WaveConfig : ScriptableObject {
 
     [SerializeField] float spawnRandom = 0.3f;
 
-    [SerializeField] int numOfEnemies = 5;
+    [SerializeField] int numOfEnemies = 2;
 
     [SerializeField] float moveSpeed = 1f;
 

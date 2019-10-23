@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
 
     [SerializeField] GameObject firePrefab;
 
-    [SerializeField] float fireSpeed = 5f;
+    [SerializeField] float fireSpeed = 10f;
 
     [SerializeField] float firePeriod = 0.5f;
 
