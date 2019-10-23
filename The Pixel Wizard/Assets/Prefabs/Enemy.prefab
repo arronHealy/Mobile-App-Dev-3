@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114171931941607208}
   - component: {fileID: 70663568346731888}
   - component: {fileID: 114461309926935716}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1175240164264826}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.88, y: -2.39, z: 0}
+  m_LocalPosition: {x: -0.85, y: 1.41, z: 0}
   m_LocalScale: {x: 8.710214, y: 7.705579, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,8 +55,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0041620675, y: 0.006272985}
-  m_Size: {x: 0.17293939, y: 0.34917483}
+  m_Offset: {x: 0.0041620675, y: -0.014114217}
+  m_Size: {x: 0.17293939, y: 0.30840042}
   m_Direction: 0
 --- !u!114 &114171931941607208
 MonoBehaviour:
@@ -84,7 +84,7 @@ MonoBehaviour:
   shotCounter: 0
   minTimeBetweenShots: 3
   maxTimeBetweenShots: 5
-  projectileSpeed: 10
+  projectileSpeed: 7
   projectile: {fileID: 1741479777389184, guid: 2beb3db157538b44f930022bc589c7a1, type: 2}
 --- !u!212 &212271511384662620
 SpriteRenderer:

@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4132036040609884}
   - component: {fileID: 212292754450568364}
   - component: {fileID: 50422796360749014}
-  - component: {fileID: 61236067828279648}
   - component: {fileID: 114318700720336126}
-  m_Layer: 0
+  - component: {fileID: 70060653413550102}
+  m_Layer: 10
   m_Name: Player Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,8 +63,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61236067828279648
-BoxCollider2D:
+--- !u!70 &70060653413550102
+CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -75,19 +75,9 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.006377995, y: 0.0036351383}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 0.32, y: 0.32}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.26642472, y: 0.2400305}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.01275602, y: 0.029079888}
+  m_Size: {x: 0.24346386, y: 0.34688953}
+  m_Direction: 0
 --- !u!114 &114318700720336126
 MonoBehaviour:
   m_ObjectHideFlags: 1
