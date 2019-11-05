@@ -11,13 +11,19 @@ public class EnemyPathing : MonoBehaviour {
     int waypointIndex = 0;
 
 	// Use this for initialization
-	void Start () {
-        this.waypoints = this.waveConfig.GetWaypoints();
+	void Start ()
+    {
+        setWaypoints();
         transform.position = waypoints[waypointIndex].transform.position;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void setWaypoints()
+    {
+        this.waypoints = this.waveConfig.GetWaypoints();
+    }
+
+    // Update is called once per frame
+    void Update () {
         Move();
 	}
 

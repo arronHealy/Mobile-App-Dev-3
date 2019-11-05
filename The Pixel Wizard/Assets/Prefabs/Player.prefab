@@ -62,7 +62,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!61 &61944394021699902
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -102,10 +102,15 @@ MonoBehaviour:
   moveSpeed: 5
   jumpSpeed: 15
   padding: 1
-  health: 150
+  health: 50
   firePrefab: {fileID: 1985284955308692, guid: 0d00e97bce088504fa162dee40a85b2a, type: 2}
   fireSpeed: 7
   firePeriod: 0.3
+  deathVfx: {fileID: 1713231663444110, guid: a0c5a5823ddc8d04e8c993a7d58bb7d6, type: 2}
+  deathSfx: {fileID: 8300000, guid: 7d1b38d745ba4e445b44e3d98773fa1c, type: 3}
+  soundVolume: 0.7
+  shootSound: {fileID: 8300000, guid: 490f567f59bc6d34faff00e67376387f, type: 3}
+  shootSoundVolume: 0.7
 --- !u!212 &212289732294907884
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -19,6 +19,16 @@ public class Player : MonoBehaviour {
 
     [SerializeField] float firePeriod = 0.5f;
 
+    [SerializeField] GameObject deathVfx;
+
+    [SerializeField] AudioClip deathSfx;
+
+    [SerializeField] [Range(0, 1)] float soundVolume = 0.7f;
+
+    [SerializeField] AudioClip shootSound;
+
+    [SerializeField] [Range(0, 1)] float shootSoundVolume = 0.7f;
+
     Coroutine firingCoroutine;
 
     float xMin, xMax;
@@ -64,8 +74,16 @@ public class Player : MonoBehaviour {
         damageDealer.Hit();
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
+        GameObject explosion = Instantiate(deathVfx, transform.position, transform.rotation);
+        Destroy(explosion, 1f);
+        AudioSource.PlayClipAtPoint(deathSfx, Camera.main.transform.position, soundVolume);
     }
 
     private void Fire()
@@ -106,7 +124,7 @@ public class Player : MonoBehaviour {
             GameObject fire = Instantiate(firePrefab, new Vector3(transform.position.x + 1, transform.position.y), Quaternion.identity) as GameObject;
 
             fire.GetComponent<Rigidbody2D>().velocity = new Vector2(fireSpeed, 0);
-
+            AudioSource.PlayClipAtPoint(shootSound, Camera.main.transform.position, shootSoundVolume);
             yield return new WaitForSeconds(firePeriod);
         }
        

@@ -54,3 +54,7 @@ MonoBehaviour:
   waveConfigs:
   - {fileID: 11400000, guid: 47d73aa5eeb5af342801944c35769d13, type: 2}
   - {fileID: 11400000, guid: f371d8e29782b9148b857f3e7c0a9fa2, type: 2}
+  bossWaveConfig: {fileID: 11400000, guid: d75d6d2ed47d61e4e95d9b285b396964, type: 2}
+  minEnemiesPerLevel: 5
+  maxEnemiesPerLevel: 10
+  enemies: 0
