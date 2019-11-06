@@ -12,10 +12,6 @@ public class EnemySpawner : MonoBehaviour {
 
     int startingWave = 0;
 
-    [SerializeField] float minEnemiesPerLevel = 5f;
-
-    [SerializeField] float maxEnemiesPerLevel = 10f;
-
     [SerializeField] int enemies = 0;
 
 	// Use this for initialization

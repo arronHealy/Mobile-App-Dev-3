@@ -84,6 +84,12 @@ public class Player : MonoBehaviour {
         GameObject explosion = Instantiate(deathVfx, transform.position, transform.rotation);
         Destroy(explosion, 1f);
         AudioSource.PlayClipAtPoint(deathSfx, Camera.main.transform.position, soundVolume);
+        FindObjectOfType<SceneLoader>().LoadGameOver();
+    }
+
+    public int GetHealth()
+    {
+        return health;
     }
 
     private void Fire()
