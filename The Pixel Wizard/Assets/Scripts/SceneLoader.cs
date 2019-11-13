@@ -37,11 +37,23 @@ public class SceneLoader : MonoBehaviour {
         StartCoroutine(WaitAndLoad());
     }
 
+    public void LoadNextLevel()
+    {
+        StartCoroutine(WaitAndLoadLevel());
+    }
+
     IEnumerator WaitAndLoad()
     {
         yield return new WaitForSeconds(delayInSeconds);
 
         SceneManager.LoadScene("Game Over");
+    }
+
+    IEnumerator WaitAndLoadLevel()
+    {
+        yield return new WaitForSeconds(delayInSeconds);
+
+        LoadNextScene();
     }
 
     public void QuitGame()

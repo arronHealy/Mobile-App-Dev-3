@@ -22,6 +22,7 @@ public class GameSession : MonoBehaviour {
         }
         else
         {
+            score = 0;
             DontDestroyOnLoad(gameObject);
         }
     }

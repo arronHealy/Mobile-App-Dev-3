@@ -107,6 +107,8 @@ public class Boss : MonoBehaviour {
         Destroy(explosion3, 1f);
 
         AudioSource.PlayClipAtPoint(deathSfx, Camera.main.transform.position, soundVolume);
+
+        FindObjectOfType<SceneLoader>().LoadNextLevel();
     }
 
 }

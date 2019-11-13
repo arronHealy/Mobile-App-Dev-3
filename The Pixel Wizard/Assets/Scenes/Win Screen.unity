@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 1008882700}
   - component: {fileID: 1008882699}
   m_Layer: 5
-  m_Name: Game Over Canvas
+  m_Name: Win Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -594,6 +594,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1448968910
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4219094360093920, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219094360093920, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.055
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219094360093920, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219094360093920, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219094360093920, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219094360093920, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219094360093920, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219094360093920, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114452708611491230, guid: cd62eba7bd2875e48b4213df728323e0,
+        type: 2}
+      propertyPath: scrollSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1605315682
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,7 +796,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13, y: 8}
+  m_AnchoredPosition: {x: 43, y: 8}
   m_SizeDelta: {x: 238, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1894843928
@@ -771,7 +818,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: GAME OVER
+  m_text: YOU WIN!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -839,7 +886,7 @@ MonoBehaviour:
   m_margin: {x: -33.423264, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1894843928}
-    characterCount: 9
+    characterCount: 8
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -872,73 +919,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1894843926}
   m_CullTransparentMesh: 0
---- !u!1001 &1939879863
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4219094360093920, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -0.053
-      objectReference: {fileID: 0}
-    - target: {fileID: 4219094360093920, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.055
-      objectReference: {fileID: 0}
-    - target: {fileID: 4219094360093920, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4219094360093920, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4219094360093920, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4219094360093920, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4219094360093920, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4219094360093920, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4219094360093920, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 10.104608
-      objectReference: {fileID: 0}
-    - target: {fileID: 4219094360093920, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 13.431772
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: cd62eba7bd2875e48b4213df728323e0, type: 2}
-  m_IsPrefabAsset: 0
---- !u!1 &1939879864 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1700387051050132, guid: cd62eba7bd2875e48b4213df728323e0,
-    type: 2}
-  m_PrefabInternal: {fileID: 1939879863}
---- !u!114 &1939879865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1939879864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ad5a21b2d9fc8e478bc015d479a90ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scrollSpeed: 0.1
 --- !u!1 &1997778740
 GameObject:
   m_ObjectHideFlags: 0
