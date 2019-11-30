@@ -76,6 +76,7 @@ public class Enemy : MonoBehaviour {
     {
         health -= damageDealer.GetDamage();
         damageDealer.Hit();
+        FindObjectOfType<GameSession>().AddToScore(scoreValue);
 
         if (health <= 0)
         {

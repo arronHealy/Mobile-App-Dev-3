@@ -39,6 +39,7 @@ public class GameSession : MonoBehaviour {
 
     public void ResetGame()
     {
+        score = 0;
         Destroy(gameObject);
     }
 }

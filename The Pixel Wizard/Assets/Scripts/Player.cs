@@ -7,6 +7,8 @@ public class Player : MonoBehaviour {
 
     [SerializeField] float moveSpeed = 2f;
 
+    [SerializeField] GameObject leftShredder;
+
     [SerializeField] float jumpSpeed = 15f;
 
     [SerializeField] float padding = 1f;
@@ -27,34 +29,96 @@ public class Player : MonoBehaviour {
 
     [SerializeField] AudioClip shootSound;
 
+    SpriteRenderer spriteRenderer;
+
+    Rigidbody2D rigidbody;
+
+    private bool leftPressed = false, rightPressed = false;
+
     [SerializeField] [Range(0, 1)] float shootSoundVolume = 0.7f;
 
     Coroutine firingCoroutine;
+
+    bool xFlipped = false;
 
     float xMin, xMax;
 
     // Use this for initialization
     void Start () {
-        SetUpMoveBoundaries();
+        //SetUpMoveBoundaries();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        rigidbody = GetComponent<Rigidbody2D>();
 	}
 
     // Update is called once per frame
     void Update () {
 
-        if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+        float playerSpeed = Input.GetAxisRaw("Horizontal");
+
+        playerSpeed *= 5;
+
+        if (playerSpeed != 0)
+        {
+            FindObjectOfType<ScrollCtrl>().Move(playerSpeed);
+
+            MoveHorizontal(playerSpeed);
+        }
+        else
+        {
+            StopMoving();
+        }
+
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             Jump();
         }
 
-        if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        /*
+        if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             Move();
         }
+        */
         
-        Fire();
+        if (leftPressed)
+        {
+            MoveHorizontal(-playerSpeed);
+        }
+
+        if (rightPressed)
+        {
+            MoveHorizontal(playerSpeed);
+        }
         
+        Fire();       
        
 	}
+
+    private void StopMoving()
+    {
+        rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
+    }
+
+    public void stopMoveAmimation()
+    {
+        FindObjectOfType<ScrollCtrl>().Stop();
+    }
+
+    public void MoveHorizontal(float speed)
+    {
+        rigidbody.velocity = new Vector2(speed, rigidbody.velocity.y);
+
+        if(speed < 0)
+        {
+            spriteRenderer.flipX = true;
+            xFlipped = true;
+        }
+        else if(speed > 0)
+        {
+            spriteRenderer.flipX = false;
+            xFlipped = false;
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -87,6 +151,11 @@ public class Player : MonoBehaviour {
         FindObjectOfType<SceneLoader>().LoadGameOver();
     }
 
+    public void AddToHealth()
+    {
+        health += 20;
+    }
+
     public int GetHealth()
     {
         return health;
@@ -94,12 +163,12 @@ public class Player : MonoBehaviour {
 
     private void Fire()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetButtonDown("Fire1"))
         {
             firingCoroutine = StartCoroutine(FireContinuously());
         }
 
-        if (Input.GetKeyUp(KeyCode.R))
+        if (Input.GetButtonUp("Fire1"))
         {
             StopCoroutine(firingCoroutine);
         }
@@ -126,14 +195,47 @@ public class Player : MonoBehaviour {
     {
         while (true)
         {
-            // Quarernion used for rotation that game object has
-            GameObject fire = Instantiate(firePrefab, new Vector3(transform.position.x + 1, transform.position.y), Quaternion.identity) as GameObject;
+            GameObject fire;
 
-            fire.GetComponent<Rigidbody2D>().velocity = new Vector2(fireSpeed, 0);
+            if (xFlipped)
+            {
+                fire = Instantiate(firePrefab, new Vector3(transform.position.x - 1, transform.position.y), Quaternion.identity) as GameObject;
+                fire.GetComponent<Rigidbody2D>().velocity = new Vector2(-fireSpeed, 0);
+            }
+            else
+            {
+                fire = Instantiate(firePrefab, new Vector3(transform.position.x + 1, transform.position.y), Quaternion.identity) as GameObject;
+                fire.GetComponent<Rigidbody2D>().velocity = new Vector2(fireSpeed, 0);
+            }
+            // Quarernion used for rotation that game object has
+
             AudioSource.PlayClipAtPoint(shootSound, Camera.main.transform.position, shootSoundVolume);
             yield return new WaitForSeconds(firePeriod);
         }
        
+    }
+
+    public void MobileMoveLeft()
+    {
+        leftPressed = true;
+    }
+
+    public void MobileMoveRight()
+    {
+        rightPressed = true;
+    }
+
+    public void MobileMoveStop()
+    {
+        leftPressed = false;
+        rightPressed = false;
+
+        StopMoving();
+    }
+
+    public void MobileFire()
+    {
+        Fire();
     }
 
     private void SetUpMoveBoundaries()
@@ -145,12 +247,12 @@ public class Player : MonoBehaviour {
 
     private void Move()
     {
-      
-        var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
 
-        var newXPos = Mathf.Clamp(transform.position.x + deltaX, xMin, xMax);
+        //var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
 
-        transform.position = new Vector2(newXPos, transform.position.y);
+        //var newXPos = Mathf.Clamp(transform.position.x + deltaX, xMin, xMax);
+
+        //transform.position = new Vector2(newXPos, transform.position.y);
 
     }
 

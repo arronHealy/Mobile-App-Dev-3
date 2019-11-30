@@ -19,7 +19,7 @@ TagManager:
   - Enemy Projectile
   - Boss
   - Boss Projectile
-  - 
+  - Health Pick Up
   - 
   - 
   - 
@@ -40,4 +40,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 272702843
     locked: 0

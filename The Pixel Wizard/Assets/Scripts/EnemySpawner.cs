@@ -67,7 +67,7 @@ public class EnemySpawner : MonoBehaviour {
 
     private void spawnBoss()
     {
-        var boss = Instantiate(
+        Instantiate(
             bossWaveConfig.GetEnemyPrefab(),
             gameObject.transform.position,
             Quaternion.identity
