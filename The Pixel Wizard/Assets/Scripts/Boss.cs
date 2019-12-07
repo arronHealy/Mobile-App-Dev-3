@@ -6,6 +6,8 @@ public class Boss : MonoBehaviour {
 
     [SerializeField] float health = 100f;
 
+    [SerializeField] int jumpDelay;
+
     [SerializeField] float shotCounter;
 
     [SerializeField] float minTimeBetweenShots = 0.5f;
@@ -25,6 +27,7 @@ public class Boss : MonoBehaviour {
     [SerializeField] [Range(0, 1)] float soundVolume = 0.7f;
 
     [SerializeField] [Range(0, 1)] float shootSoundVolume = 0.7f;
+
 
     // Use this for initialization
     void Start()

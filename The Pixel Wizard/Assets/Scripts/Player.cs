@@ -7,11 +7,7 @@ public class Player : MonoBehaviour {
 
     [SerializeField] float moveSpeed = 2f;
 
-    [SerializeField] GameObject leftShredder;
-
     [SerializeField] float jumpSpeed = 15f;
-
-    [SerializeField] float padding = 1f;
 
     [SerializeField] int health = 150;
 
@@ -31,7 +27,7 @@ public class Player : MonoBehaviour {
 
     SpriteRenderer spriteRenderer;
 
-    Rigidbody2D rigidbody;
+    Rigidbody2D rb;
 
     private bool leftPressed = false, rightPressed = false;
 
@@ -41,13 +37,11 @@ public class Player : MonoBehaviour {
 
     bool xFlipped = false;
 
-    float xMin, xMax;
-
     // Use this for initialization
     void Start () {
         //SetUpMoveBoundaries();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
 	}
 
     // Update is called once per frame
@@ -96,7 +90,7 @@ public class Player : MonoBehaviour {
 
     private void StopMoving()
     {
-        rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
+        rb.velocity = new Vector2(0, rb.velocity.y);
     }
 
     public void stopMoveAmimation()
@@ -106,7 +100,7 @@ public class Player : MonoBehaviour {
 
     public void MoveHorizontal(float speed)
     {
-        rigidbody.velocity = new Vector2(speed, rigidbody.velocity.y);
+        rb.velocity = new Vector2(speed, rb.velocity.y);
 
         if(speed < 0)
         {
@@ -238,12 +232,14 @@ public class Player : MonoBehaviour {
         Fire();
     }
 
+    /*
     private void SetUpMoveBoundaries()
     {
         Camera gameCamera = Camera.main;
         xMin = gameCamera.ViewportToWorldPoint(new Vector3(0,0,0)).x + padding;
         xMax = gameCamera.ViewportToWorldPoint(new Vector3(1,0,0)).x - padding;
     }
+    */
 
     private void Move()
     {

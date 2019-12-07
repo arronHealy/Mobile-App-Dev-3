@@ -6,19 +6,22 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour {
 
+    
     [SerializeField] List<WaveConfig> waveConfigs;
 
-    [SerializeField] WaveConfig bossWaveConfig;
+    [SerializeField] WaveConfig enemyWaveConfig;
+
+    //[SerializeField] WaveConfig bossWaveConfig;
 
     int startingWave = 0;
-
+    
     [SerializeField] int enemies = 0;
 
 	// Use this for initialization
 	void Start () {
-        var currentWave = waveConfigs[startingWave];
-        StartCoroutine(SpawnAllEnemiesInWave(currentWave));
-        StartCoroutine(RandomSpawn(currentWave));
+        //var currentWave = waveConfigs[startingWave];
+        //StartCoroutine(SpawnAllEnemiesInWave(currentWave));
+        StartCoroutine(RandomSpawn(enemyWaveConfig));
 	}
 
     private IEnumerator SpawnAllEnemiesInWave(WaveConfig waveConfig)
@@ -51,13 +54,13 @@ public class EnemySpawner : MonoBehaviour {
             spawnPos,
             Quaternion.identity);
 
-            newEnemy.AddComponent<BoxCollider2D>();
+            //newEnemy.AddComponent<BoxCollider2D>();
 
-            Rigidbody2D body = newEnemy.AddComponent<Rigidbody2D>();
+            //Rigidbody2D body = newEnemy.AddComponent<Rigidbody2D>();
 
-            body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            //body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
 
-            body.mass = 1;
+            //body.mass = 1;
 
             yield return new WaitForSeconds(waveConfig.GetTimeBetweenSpawns());
         }
@@ -67,10 +70,6 @@ public class EnemySpawner : MonoBehaviour {
 
     private void spawnBoss()
     {
-        Instantiate(
-            bossWaveConfig.GetEnemyPrefab(),
-            gameObject.transform.position,
-            Quaternion.identity
-            );
+        FindObjectOfType<BossSpawner>().SpawnBoss();
     }
 }

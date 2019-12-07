@@ -28,13 +28,22 @@ public class Enemy : MonoBehaviour {
 
     [SerializeField] [Range(0, 1)] float shootSoundVolume = 0.7f;
 
+    [SerializeField] float speed;
+
+    private Rigidbody2D rb;
+
+    private SpriteRenderer sr;
+
     // Use this for initialization
     void Start () {
         shotCounter = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
-	}
+        rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        Move();
         CountDownAndShoot();
 	}
 
@@ -91,5 +100,24 @@ public class Enemy : MonoBehaviour {
         GameObject explosion = Instantiate(deathVfx, transform.position, transform.rotation);
         Destroy(explosion, 1f);
         AudioSource.PlayClipAtPoint(deathSfx, Camera.main.transform.position, soundVolume);
+    }
+
+    private void Move()
+    {
+        Vector2 temp = rb.velocity;
+        temp.x = speed;
+        rb.velocity = temp;
+    }
+
+    private void SetSpriteDirection()
+    {
+        if(speed > 0)
+        {
+            sr.flipX = true;
+        }
+        else if(speed > 0)
+        {
+            sr.flipX = false;
+        }
     }
 }

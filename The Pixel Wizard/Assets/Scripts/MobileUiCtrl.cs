@@ -32,4 +32,9 @@ public class MobileUiCtrl : MonoBehaviour {
     {
         playerCtrl.MobileFire();
     }
+
+    public void MoveLeft()
+    {
+        FindObjectOfType<Player>().MobileMoveLeft();
+    }
 }
