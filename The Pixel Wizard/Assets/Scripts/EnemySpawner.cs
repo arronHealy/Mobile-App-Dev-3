@@ -6,12 +6,7 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour {
 
-    
-    [SerializeField] List<WaveConfig> waveConfigs;
-
     [SerializeField] WaveConfig enemyWaveConfig;
-
-    //[SerializeField] WaveConfig bossWaveConfig;
 
     int startingWave = 0;
     
@@ -53,14 +48,6 @@ public class EnemySpawner : MonoBehaviour {
             waveConfig.GetEnemyPrefab(),
             spawnPos,
             Quaternion.identity);
-
-            //newEnemy.AddComponent<BoxCollider2D>();
-
-            //Rigidbody2D body = newEnemy.AddComponent<Rigidbody2D>();
-
-            //body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-
-            //body.mass = 1;
 
             yield return new WaitForSeconds(waveConfig.GetTimeBetweenSpawns());
         }

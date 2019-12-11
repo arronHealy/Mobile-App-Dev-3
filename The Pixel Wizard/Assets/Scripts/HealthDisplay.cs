@@ -1,18 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthDisplay : MonoBehaviour {
 
-    Text healthText;
+    TextMeshPro healthText;
 
     Player gamePlayer;
 
     // Use this for initialization
     void Start()
     {
-        healthText = GetComponent<Text>();
+        healthText = GetComponent<TextMeshPro>();
         gamePlayer = FindObjectOfType<Player>();
     }
 
