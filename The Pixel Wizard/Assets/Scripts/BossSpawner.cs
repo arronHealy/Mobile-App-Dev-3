@@ -6,6 +6,8 @@ public class BossSpawner : MonoBehaviour {
 
     [SerializeField] WaveConfig waveConfig;
 
+    // Intantiate boss sprite
+
 	public void SpawnBoss()
     {
         Instantiate(

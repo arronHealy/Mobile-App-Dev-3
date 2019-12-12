@@ -27,6 +27,7 @@ public class GameSession : MonoBehaviour {
         }
     }
 
+    /*
     public int GetScore()
     {
         return score;
@@ -36,6 +37,7 @@ public class GameSession : MonoBehaviour {
     {
         score += scoreVal;
     }
+    */
 
     public void ResetGame()
     {

@@ -6,7 +6,8 @@ using UnityEngine;
 public class WaveConfig : ScriptableObject {
 
     [SerializeField] GameObject enemyPrefab;
-    [SerializeField] GameObject pathPrefab;
+    
+    // [SerializeField] GameObject pathPrefab;
 
     [SerializeField] float timeBetweenSpawns = 3f;
 
@@ -16,11 +17,17 @@ public class WaveConfig : ScriptableObject {
 
     [SerializeField] float moveSpeed = 1f;
 
+    /*
+    * ScriptableObject type allows for saving of use of data independent of class instances 
+    * Type mainly used for creating of enemies and time delays
+    */
+
     public GameObject GetEnemyPrefab()
     {
         return enemyPrefab;
     }
 
+    /*
     public List<Transform> GetWaypoints()
     {
         var waveWayPoints = new List<Transform>();
@@ -32,7 +39,7 @@ public class WaveConfig : ScriptableObject {
 
         return waveWayPoints;
     }
-
+    */
     public float GetTimeBetweenSpawns()
     {
         return timeBetweenSpawns;

@@ -36,28 +36,34 @@ public class Enemy : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        // time enemy shooting
         shotCounter = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
+        //get enemy components
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
     }
 	
 	// Update is called once per frame
 	void Update () {
+        // enemy move and shoot per frame
         Move();
         CountDownAndShoot();
 	}
 
     private void CountDownAndShoot()
     {
+        // count between firing times
         shotCounter -= Time.deltaTime;
 
         if (shotCounter <= 0)
         {
             Fire();
+            // reset counter
             shotCounter = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
         }
     }
 
+    // enemy firing method
     private void Fire()
     {
         GameObject fire = Instantiate(
@@ -81,11 +87,12 @@ public class Enemy : MonoBehaviour {
         ProcessHit(damageDealer);
     }
 
+    // process enemy health
     private void ProcessHit(DamageDealer damageDealer)
     {
         health -= damageDealer.GetDamage();
         damageDealer.Hit();
-        FindObjectOfType<GameSession>().AddToScore(scoreValue);
+        // FindObjectOfType<GameSession>().AddToScore(scoreValue);
 
         if (health <= 0)
         {
@@ -93,15 +100,17 @@ public class Enemy : MonoBehaviour {
         }
     }
 
+    // destroy enemy game object
     private void Die()
     {
-        FindObjectOfType<GameSession>().AddToScore(scoreValue);
+        //FindObjectOfType<GameSession>().AddToScore(scoreValue);
         Destroy(gameObject);
         GameObject explosion = Instantiate(deathVfx, transform.position, transform.rotation);
         Destroy(explosion, 1f);
         AudioSource.PlayClipAtPoint(deathSfx, Camera.main.transform.position, soundVolume);
     }
 
+    // move enemy
     private void Move()
     {
         Vector2 temp = rb.velocity;
@@ -109,15 +118,4 @@ public class Enemy : MonoBehaviour {
         rb.velocity = temp;
     }
 
-    private void SetSpriteDirection()
-    {
-        if(speed > 0)
-        {
-            sr.flipX = true;
-        }
-        else if(speed > 0)
-        {
-            sr.flipX = false;
-        }
-    }
 }

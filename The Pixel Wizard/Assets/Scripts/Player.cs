@@ -39,7 +39,7 @@ public class Player : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //SetUpMoveBoundaries();
+        //get player components
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
 	}
@@ -47,12 +47,14 @@ public class Player : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
+        // move player along x axis of scene
         float playerSpeed = Input.GetAxisRaw("Horizontal");
 
         playerSpeed *= 5;
 
         if (playerSpeed != 0)
         {
+            // call background scrolling method
             FindObjectOfType<ScrollCtrl>().Move(playerSpeed);
 
             MoveHorizontal(playerSpeed);
@@ -62,18 +64,14 @@ public class Player : MonoBehaviour {
             StopMoving();
         }
 
+        // check for player jump
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             Jump();
         }
 
-        /*
-        if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-        {
-            Move();
-        }
-        */
         
+        // code intended for mobile controls
         if (leftPressed)
         {
             MoveHorizontal(-playerSpeed);
@@ -88,20 +86,24 @@ public class Player : MonoBehaviour {
        
 	}
 
+    // stop player movement
     private void StopMoving()
     {
         rb.velocity = new Vector2(0, rb.velocity.y);
     }
 
+    // stop scroll animation
     public void stopMoveAmimation()
     {
         FindObjectOfType<ScrollCtrl>().Stop();
     }
 
+    // move player
     public void MoveHorizontal(float speed)
     {
         rb.velocity = new Vector2(speed, rb.velocity.y);
 
+        // flip sprite depending on move position
         if(speed < 0)
         {
             spriteRenderer.flipX = true;
@@ -114,6 +116,7 @@ public class Player : MonoBehaviour {
         }
     }
 
+    // check for projectile collision and deal damage to player
     private void OnTriggerEnter2D(Collider2D collision)
     {
         DamageDealer damageDealer = collision.GetComponent<DamageDealer>();
@@ -126,6 +129,7 @@ public class Player : MonoBehaviour {
         ProcessHit(damageDealer);
     }
 
+    // decrease health and check for death
     private void ProcessHit(DamageDealer damageDealer)
     {
         health -= damageDealer.GetDamage();
@@ -136,6 +140,7 @@ public class Player : MonoBehaviour {
         }
     }
 
+    // Destroy player game object
     private void Die()
     {
         Destroy(gameObject);
@@ -145,6 +150,7 @@ public class Player : MonoBehaviour {
         FindObjectOfType<SceneLoader>().LoadGameOver();
     }
 
+    // increase health
     public void AddToHealth()
     {
         health += 20;
@@ -155,6 +161,7 @@ public class Player : MonoBehaviour {
         return health;
     }
 
+    // check for player shooting start/stop coroutine
     private void Fire()
     {
         if (Input.GetButtonDown("Fire1"))
@@ -185,12 +192,15 @@ public class Player : MonoBehaviour {
     }
     */
 
+    // Coroutine method
     IEnumerator FireContinuously()
     {
+
         while (true)
         {
             GameObject fire;
 
+            // check for player direction and fire from player position
             if (xFlipped)
             {
                 fire = Instantiate(firePrefab, new Vector3(transform.position.x - 1, transform.position.y), Quaternion.identity) as GameObject;
@@ -201,14 +211,16 @@ public class Player : MonoBehaviour {
                 fire = Instantiate(firePrefab, new Vector3(transform.position.x + 1, transform.position.y), Quaternion.identity) as GameObject;
                 fire.GetComponent<Rigidbody2D>().velocity = new Vector2(fireSpeed, 0);
             }
-            // Quarernion used for rotation that game object has
-
+            
+            // play shoot sound
             AudioSource.PlayClipAtPoint(shootSound, Camera.main.transform.position, shootSoundVolume);
+
             yield return new WaitForSeconds(firePeriod);
         }
        
     }
 
+    // Mobile button control
     public void MobileMoveLeft()
     {
         leftPressed = true;
@@ -232,6 +244,8 @@ public class Player : MonoBehaviour {
         Fire();
     }
 
+    // old methods used at start of development
+
     /*
     private void SetUpMoveBoundaries()
     {
@@ -239,7 +253,7 @@ public class Player : MonoBehaviour {
         xMin = gameCamera.ViewportToWorldPoint(new Vector3(0,0,0)).x + padding;
         xMax = gameCamera.ViewportToWorldPoint(new Vector3(1,0,0)).x - padding;
     }
-    */
+    
 
     private void Move()
     {
@@ -251,7 +265,9 @@ public class Player : MonoBehaviour {
         //transform.position = new Vector2(newXPos, transform.position.y);
 
     }
+    */
 
+    //player jump logic
     private void Jump()
     {
         var deltaY = Input.GetAxis("Vertical") * Time.deltaTime * jumpSpeed;

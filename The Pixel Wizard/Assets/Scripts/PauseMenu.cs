@@ -12,6 +12,8 @@ public class PauseMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        // check for pause button pressed
 		if (Input.GetKeyDown(KeyCode.Space))
         {
             if(gamePaused)
@@ -30,6 +32,7 @@ public class PauseMenu : MonoBehaviour {
     {
         pauseMenu.SetActive(false);
         mobileUi.SetActive(true);
+        // start game time
         Time.timeScale = 1f;
         gamePaused = false;
     }
@@ -38,6 +41,7 @@ public class PauseMenu : MonoBehaviour {
     {
         mobileUi.SetActive(false);
         pauseMenu.SetActive(true);
+        // stop game time
         Time.timeScale = 0f;
         gamePaused = true;
     }

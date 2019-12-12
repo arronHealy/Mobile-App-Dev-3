@@ -7,21 +7,18 @@ public class BigEnemySpawner : MonoBehaviour
 
     [SerializeField] WaveConfig enemyWaveConfig;
 
-    int startingWave = 0;
-
     [SerializeField] int enemies = 0;
 
     // Use this for initialization
     void Start()
     {
-        //var currentWave = waveConfigs[startingWave];
-        //StartCoroutine(SpawnAllEnemiesInWave(currentWave));
+        // start coroutine to spawn the big enemies
         StartCoroutine(RandomSpawn(enemyWaveConfig));
     }
 
     private IEnumerator RandomSpawn(WaveConfig waveConfig)
     {
-
+        // loop for number of enemies and spawn randomly in relation to game object
         for (int i = 0; i < enemies; i++)
         {
             float spawnX = Random.Range(gameObject.transform.position.x - 10, gameObject.transform.position.x);

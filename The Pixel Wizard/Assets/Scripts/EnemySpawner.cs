@@ -8,17 +8,15 @@ public class EnemySpawner : MonoBehaviour {
 
     [SerializeField] WaveConfig enemyWaveConfig;
 
-    int startingWave = 0;
-    
     [SerializeField] int enemies = 0;
 
 	// Use this for initialization
 	void Start () {
-        //var currentWave = waveConfigs[startingWave];
-        //StartCoroutine(SpawnAllEnemiesInWave(currentWave));
+        // start coroutine to randomly spawn enemies
         StartCoroutine(RandomSpawn(enemyWaveConfig));
 	}
 
+    /*
     private IEnumerator SpawnAllEnemiesInWave(WaveConfig waveConfig)
     {
         for (int i = 0; i < waveConfig.GetNumOfEnemies(); i++)
@@ -33,10 +31,11 @@ public class EnemySpawner : MonoBehaviour {
             yield return new WaitForSeconds(waveConfig.GetTimeBetweenSpawns());
         }
     }
+    */
 
     private IEnumerator RandomSpawn(WaveConfig waveConfig)
     {
-        
+        // loop for number of enemies and spawn randomly in relation to spawner game object
         for (int i = 0; i < enemies; i++)
         {
             float spawnX = Random.Range(gameObject.transform.position.x - 10, gameObject.transform.position.x);
@@ -55,8 +54,10 @@ public class EnemySpawner : MonoBehaviour {
         spawnBoss();
     }
 
+    // spawn boss once all enemies created
     private void spawnBoss()
     {
+        // find and call boss spawner method
         FindObjectOfType<BossSpawner>().SpawnBoss();
     }
 }

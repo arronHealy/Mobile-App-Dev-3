@@ -8,6 +8,10 @@ public class SimpleMovement : MonoBehaviour {
 
     private Rigidbody2D rb;
 
+    /*
+     * Simple movement class adds movement to enemy sprites
+     */
+
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();

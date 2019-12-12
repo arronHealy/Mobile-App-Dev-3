@@ -473,9 +473,37 @@ Prefab:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114421946026838460, guid: 87df15e2bdfc2af478ddd6776f34218d, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 87df15e2bdfc2af478ddd6776f34218d, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &442521878 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1181746730862884, guid: 87df15e2bdfc2af478ddd6776f34218d,
+    type: 2}
+  m_PrefabInternal: {fileID: 442521877}
+--- !u!114 &442521879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 442521878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0878ff91c91636449645ca74bcc5803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 2
+  jumpSpeed: 15
+  health: 150
+  firePrefab: {fileID: 1985284955308692, guid: 0d00e97bce088504fa162dee40a85b2a, type: 2}
+  fireSpeed: 10
+  firePeriod: 0.5
+  deathVfx: {fileID: 1713231663444110, guid: a0c5a5823ddc8d04e8c993a7d58bb7d6, type: 2}
+  deathSfx: {fileID: 8300000, guid: 7d1b38d745ba4e445b44e3d98773fa1c, type: 3}
+  soundVolume: 0.7
+  shootSound: {fileID: 8300000, guid: 490f567f59bc6d34faff00e67376387f, type: 3}
+  shootSoundVolume: 0.7
 --- !u!1 &509206708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,6 +1292,26 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 224156501741482058, guid: ac28ba7f59f7dab4c87b5d75f2f18e9c,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -8.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 224156501741482058, guid: ac28ba7f59f7dab4c87b5d75f2f18e9c,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 421.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224173798887733722, guid: ac28ba7f59f7dab4c87b5d75f2f18e9c,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -7.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224173798887733722, guid: ac28ba7f59f7dab4c87b5d75f2f18e9c,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 14.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac28ba7f59f7dab4c87b5d75f2f18e9c, type: 2}

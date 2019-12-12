@@ -32,6 +32,7 @@ public class Boss : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        // set shot counter
         shotCounter = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
     }
 
@@ -41,6 +42,7 @@ public class Boss : MonoBehaviour {
         CountDownAndShoot();
     }
 
+    // shoot counter called once per frame
     private void CountDownAndShoot()
     {
         shotCounter -= Time.deltaTime;
@@ -48,10 +50,13 @@ public class Boss : MonoBehaviour {
         if (shotCounter <= 0)
         {
             Fire();
+
+            // reset shot counter
             shotCounter = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
         }
     }
 
+    // boss firing method
     private void Fire()
     {
         GameObject fire = Instantiate(
@@ -69,12 +74,16 @@ public class Boss : MonoBehaviour {
             new Vector3(transform.position.x - 2, transform.position.y + 1),
             Quaternion.identity) as GameObject;
 
+        // move projectiles across screen
         fire.GetComponent<Rigidbody2D>().velocity = new Vector2(-projectileSpeed, 0);
         fire2.GetComponent<Rigidbody2D>().velocity = new Vector2(-projectileSpeed, 0);
         fire3.GetComponent<Rigidbody2D>().velocity = new Vector2(-projectileSpeed, 0);
+
+        // play shoot audio
         AudioSource.PlayClipAtPoint(shootSound, Camera.main.transform.position, shootSoundVolume);
     }
 
+    // process projectile hit for boss
     private void OnTriggerEnter2D(Collider2D collision)
     {
         DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
@@ -87,6 +96,7 @@ public class Boss : MonoBehaviour {
         ProcessHit(damageDealer);
     }
 
+    // decrease health and check for death
     private void ProcessHit(DamageDealer damageDealer)
     {
         health -= damageDealer.GetDamage();
@@ -98,6 +108,7 @@ public class Boss : MonoBehaviour {
         }
     }
 
+    // Destroy boss game object
     private void Die()
     {
         Destroy(gameObject);
@@ -109,8 +120,10 @@ public class Boss : MonoBehaviour {
         Destroy(explosion2, 1f);
         Destroy(explosion3, 1f);
 
+        // play death sound
         AudioSource.PlayClipAtPoint(deathSfx, Camera.main.transform.position, soundVolume);
 
+        // load next scene method call
         FindObjectOfType<SceneLoader>().LoadNextLevel();
     }
 

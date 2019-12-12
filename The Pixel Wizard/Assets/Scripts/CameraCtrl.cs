@@ -13,6 +13,7 @@ public class CameraCtrl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        // camera position fixed to player position
         transform.position = new Vector3(player.position.x, transform.position.y, transform.position.z);	
 	}
 }
