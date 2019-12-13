@@ -9,3 +9,8 @@ The code will be written in C# using Unity and Visual Studio 2017. The objective
 ## Run this project:
 
 Git clone this repository into local folder and open using compatible Unity version.  
+
+
+## Video Demo of Game
+
+[![Pixel wizard gameplay](https://img.youtube.com/vi/X3p3XS2lVYQ/0.jpg)](http://www.youtube.com/watch?v=X3p3XS2lVYQ)
